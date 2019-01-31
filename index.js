@@ -1,10 +1,10 @@
 import pkg from './package.json'
 import arg from 'arg'
 import chalk from 'chalk'
-import dotenv from 'dotenv'
 
 import {showHelp} from './lib/help'
 import {exit, abort} from './lib/program'
+import promptCredentials from './lib/prompt'
 import {readJSON, checkJSON, createTemplate} from './lib/json'
 import automateTasks from './lib/lbc/index'
 
@@ -34,8 +34,6 @@ if (args['--help']) {
 // -------------------------------------------------------------
 // Script.
 // -------------------------------------------------------------
-
-dotenv.config()
 
 // Generate mode.
 if (args['--generate']) {
@@ -75,7 +73,10 @@ async function run() {
 
   // All good? Let's automate.
   try {
-    await automateTasks(data)
+    const credentials = await promptCredentials()
+    if (!credentials.ok) exit()
+
+    await automateTasks(data, credentials)
   } catch {
     abort(3, 'Visual automation failed.')
   }
