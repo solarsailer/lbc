@@ -80,8 +80,8 @@ async function run() {
 
   try {
     await automateTasks(data, credentials)
-  } catch {
-    abort(3, 'Visual automation failed.')
+  } catch (e) {
+    abort(3, e.message)
   }
 }
 
