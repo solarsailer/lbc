@@ -1,10 +1,11 @@
 import pkg from './package.json'
 import arg from 'arg'
+import chalk from 'chalk'
 import dotenv from 'dotenv'
 
 import {showHelp} from './lib/help'
 import {exit, abort} from './lib/program'
-import {readJSON, checkJSON} from './lib/json'
+import {readJSON, checkJSON, createTemplate} from './lib/json'
 import automateTasks from './lib/lbc/index'
 
 // -------------------------------------------------------------
@@ -14,10 +15,12 @@ import automateTasks from './lib/lbc/index'
 const args = arg({
   '--help': Boolean,
   '--version': Boolean,
+  '--generate': String,
 
   // Aliases.
   '-h': '--help',
-  '-v': '--version'
+  '-v': '--version',
+  '-G': '--generate'
 })
 
 if (args['--version']) {
@@ -28,17 +31,27 @@ if (args['--help']) {
   exit(showHelp)
 }
 
-if (args._.length === 0) {
-  showHelp()
-  abort(1, '\nNo argument provided.')
-}
-
 // -------------------------------------------------------------
 // Script.
 // -------------------------------------------------------------
 
 dotenv.config()
-run()
+
+// Generate mode.
+if (args['--generate']) {
+  generate(args['--generate'])
+} else {
+  // We need at least one argument.
+  if (args._.length === 0) {
+    abort(1, 'No argument provided.')
+  }
+
+  run()
+}
+
+// -------------------------------------------------------------
+// Commands.
+// -------------------------------------------------------------
 
 async function run() {
   let data
@@ -62,8 +75,17 @@ async function run() {
 
   // All good? Let's automate.
   try {
-    automateTasks(data)
+    await automateTasks(data)
   } catch {
     abort(3, 'Visual automation failed.')
+  }
+}
+
+async function generate(filename) {
+  try {
+    await createTemplate(filename)
+    exit(chalk.green(`File generated at ${filename}`))
+  } catch (e) {
+    abort(6, e.message)
   }
 }
