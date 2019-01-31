@@ -1,0 +1,21 @@
+{
+  "name": "automacorner",
+  "version": "0.1.0",
+  "description": "Automation for Le Bon Coin",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": "https://github.com/solarsailer/automacorner",
+  "author": {
+    "name": "Matthieu Oger",
+    "url": "https://matthieuoger.com/"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": ""
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "puppeteer": "^1.11.0"
+  },
+  "devDependencies": {}
+}
