@@ -58,7 +58,7 @@ async function run() {
   let data
 
   try {
-    const [file, ...rest] = args._
+    const [file] = args._
     data = await readJSON(file)
   } catch (e) {
     abort(2, e.message)
