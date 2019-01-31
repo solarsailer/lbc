@@ -4,10 +4,11 @@ import dotenv from 'dotenv'
 
 import {showHelp} from './lib/help'
 import {exit, abort} from './lib/program'
+import {readJSON, checkJSON} from './lib/json'
 import automateTasks from './lib/lbc/index'
 
 // -------------------------------------------------------------
-// Script.
+// Arguments.
 // -------------------------------------------------------------
 
 const args = arg({
@@ -32,15 +33,37 @@ if (args._.length === 0) {
   abort(1, '\nNo argument provided.')
 }
 
+// -------------------------------------------------------------
+// Script.
+// -------------------------------------------------------------
+
 dotenv.config()
+run()
 
-try {
-} catch {
-  abort(2, 'JSON file parsing failed.')
-}
+async function run() {
+  let data
 
-try {
-  automateTasks()
-} catch {
-  abort(3, 'Visual automation failed.')
+  try {
+    const [file, ...rest] = args._
+    data = await readJSON(file)
+  } catch (e) {
+    abort(2, e.message)
+  }
+
+  // No data?
+  if (!data) {
+    abort(4, 'File is empty or non-conform.')
+  }
+
+  // Invalid data format?
+  if (!checkJSON(data)) {
+    abort(4, 'Incorrect data!')
+  }
+
+  // All good? Let's automate.
+  try {
+    automateTasks(data)
+  } catch {
+    abort(3, 'Visual automation failed.')
+  }
 }
