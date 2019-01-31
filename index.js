@@ -1,9 +1,9 @@
 import pkg from './package.json'
 import arg from 'arg'
-import chalk from 'chalk'
 import dotenv from 'dotenv'
 
 import {showHelp} from './lib/help'
+import {exit, abort} from './lib/program'
 import automateTasks from './lib/lbc/index'
 
 // -------------------------------------------------------------
@@ -20,26 +20,27 @@ const args = arg({
 })
 
 if (args['--version']) {
-  console.log(pkg.version)
-  process.exit(0)
+  exit(pkg.version)
 }
 
 if (args['--help']) {
-  showHelp()
-  process.exit(0)
+  exit(showHelp)
 }
 
 if (args._.length === 0) {
   showHelp()
-  console.error(chalk.red('No argument provided.'))
-  process.exit(1)
+  abort(1, '\nNo argument provided.')
 }
 
 dotenv.config()
 
 try {
+} catch {
+  abort(2, 'JSON file parsing failed.')
+}
+
+try {
   automateTasks()
 } catch {
-  console.error(chalk.red('Visual automation failed.'))
-  process.exit(2)
+  abort(3, 'Visual automation failed.')
 }
