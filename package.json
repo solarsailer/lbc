@@ -1,10 +1,10 @@
 {
-  "name": "automacorner",
+  "name": "lbc",
   "version": "0.1.0",
   "description": "Automation for LeBonCoin",
   "license": "UNLICENSED",
   "private": true,
-  "repository": "https://github.com/solarsailer/automacorner",
+  "repository": "https://github.com/solarsailer/lbc",
   "author": {
     "name": "Matthieu Oger",
     "url": "https://matthieuoger.com/"

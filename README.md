@@ -1,4 +1,4 @@
-# automacorner
+# lbc
 
 Automate ad creation on LeBonCoin.
 
