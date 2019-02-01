@@ -8,6 +8,8 @@
 * [Usage](#usage)
 * [Rational](#rational)
 * [TODO](#todo)
+* [Contributing](#contributing)
+* [License](#license)
 
 **Warning 1: I've only tested this package on my computer and with my workflow. This is an alpha. Use with caution.**
 
@@ -68,6 +70,7 @@ It was tedious to copy and paste everything each time, and since I was keeping t
 ## TODO
 
 - [ ] Windows support.
+- [ ] Tests. ¯\_(ツ)_/¯
 - [ ] If an image is not uploaded correctly, retry.
 
   Markup when it's broken:
@@ -80,7 +83,17 @@ It was tedious to copy and paste everything each time, and since I was keeping t
 
   The correct indicator here is the `ad-thumb/.jpg` and `data-state="uploaded"` at the end. If we detect that, we could try a new upload.
 
-- [ ] Package with NCC/PKG.
+- [ ] Package with [ncc](https://github.com/zeit/ncc)/[pkg](https://github.com/zeit/pkg)?
+
+## Contributing
+
+Feel free to send a PR. 🙏
+
+However, this is a one day project. Don't expect much more from this package. 😉
+
+## License
+
+MIT © [Matthieu Oger](https://matthieuoger.com/)
 
 
 [lbc]: https://www.leboncoin.fr/
