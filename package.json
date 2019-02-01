@@ -1,7 +1,7 @@
 {
   "name": "@matthieuoger/lbc",
   "version": "0.1.0",
-  "description": "Automation for LeBonCoin",
+  "description": "Automation for leboncoin.fr",
   "license": "MIT",
   "repository": "https://github.com/solarsailer/lbc",
   "author": {
