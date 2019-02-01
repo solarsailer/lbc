@@ -9,6 +9,9 @@
     "name": "Matthieu Oger",
     "url": "https://matthieuoger.com/"
   },
+  "bin": {
+    "lbc": "bin/lbc"
+  },
   "scripts": {
     "start": "node -r esm index.js",
     "test": "eslint ."
