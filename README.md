@@ -1,10 +1,19 @@
-# lbc
+# ![lbc](header.png)
 
-Automate ad creation on [leboncoin.fr][lbc].
+> Automate ad creation on [leboncoin.fr][lbc].
+
+[![NPM - lbc](https://badgen.net/npm/v/@matthieuoger/lbc)](https://www.npmjs.com/package/@matthieuoger/lbc)
+
+* [Install](#install)
+* [Usage](#usage)
+* [Rational](#rational)
+* [TODO](#todo)
 
 **Warning 1: I've only tested this package on my computer and with my workflow. This is an alpha. Use with caution.**
 
 **Warning 2: this package relies heavily on visual automation with [Puppeteer](https://github.com/GoogleChrome/puppeteer/). If the developers change the markup on [leboncoin.fr][lbc], it will break.**
+
+---
 
 ## Install
 
