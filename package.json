@@ -2,8 +2,7 @@
   "name": "lbc",
   "version": "0.1.0",
   "description": "Automation for LeBonCoin",
-  "license": "UNLICENSED",
-  "private": true,
+  "license": "MIT",
   "repository": "https://github.com/solarsailer/lbc",
   "author": {
     "name": "Matthieu Oger",
